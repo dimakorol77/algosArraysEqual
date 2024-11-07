@@ -1,0 +1,47 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class ArrayEqualityChecker {
+
+    /**
+     * Метод для проверки равенства двух массивов с использованием HashMap.
+     *
+     * @param arr1 Первый массив
+     * @param arr2 Второй массив
+     * @return true, если массивы равны, иначе false
+     */
+    public static boolean areArraysEqualHashMap(int[] arr1, int[] arr2) {
+        // Сначала проверяем длину массивов
+        if (arr1.length != arr2.length) {
+            return false;
+        }
+
+        // Создаем карты для подсчета частот элементов
+        Map<Integer, Integer> map1 = new HashMap<>();
+        Map<Integer, Integer> map2 = new HashMap<>();
+
+        // Заполняем первую карту
+        for (int num : arr1) {
+            map1.put(num, map1.getOrDefault(num, 0) + 1);
+        }
+
+        // Заполняем вторую карту
+        for (int num : arr2) {
+            map2.put(num, map2.getOrDefault(num, 0) + 1);
+        }
+
+        // Сравниваем обе карты
+        return map1.equals(map2);
+    }
+
+    public static void main(String[] args) {
+        int[] arr1 = {1, 2, 5, 4, 0};
+        int[] arr2 = {2, 4, 5, 0, 1};
+
+        if (areArraysEqualHashMap(arr1, arr2)) {
+            System.out.println("Да");
+        } else {
+            System.out.println("Нет");
+        }
+    }
+}
